@@ -11,7 +11,7 @@
 <h2>Display All Product</h2>
 <div id="output"></div>
 <script>
-    let sanpham = ['Sony', 'Vivo', 'Samsung', 'Apple', 'Oppo'];
+    let sanpham = [];
 
     function danhsachsanpham() {
         let bangsanpham = '<table> <caption style="text-align: left">Product Name</caption> <caption id="idsoluong" style="text-align: right">5 Product</caption>'
@@ -34,9 +34,14 @@
     }
 
     function addproduct() {
-        sanpham.push(document.getElementById('idinput').value);
-        alert('Đã thêm sản phẩm mới: ' + sanpham[sanpham.length - 1]);
-        danhsachsanpham();
+        let a = sanpham.indexOf(document.getElementById('idinput').value);
+        if (a === -1) {
+            sanpham.push(document.getElementById('idinput').value);
+            alert('Đã thêm sản phẩm mới: ' + sanpham[sanpham.length - 1]);
+            danhsachsanpham();
+        } else {
+            alert('Sản phẩm đã tồn tại');
+        }
     }
 
     function editproduct(a) {
@@ -46,11 +51,11 @@
     }
 
     function deleteproduct(b) {
-        for (i = b.value; i < sanpham.length; i++) {
-            sanpham[b.value] = sanpham[b.value + 1];
-            sanpham.pop();
-            danhsachsanpham()
+        for (let i = parseInt(b.value); i < sanpham.length; i++) {
+            sanpham[i] = a = sanpham[i + 1];
         }
+        sanpham.pop();
+        danhsachsanpham()
     }
 </script>
 </body>
